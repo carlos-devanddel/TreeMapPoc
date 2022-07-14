@@ -6,7 +6,7 @@ import org.jeasy.random.EasyRandomParameters;
 public class DefaultTestFactory {
 	private static EasyRandom createRandomDefaultGenerator() {
 		EasyRandomParameters parameters = new EasyRandomParameters();
-		parameters.stringLengthRange(1,(int) (Math.random()*20)).collectionSizeRange(1, 5);
+		parameters.stringLengthRange(1,(int) (Math.random()*20)+1).collectionSizeRange(1, 5);
 		return new EasyRandom(parameters);
 	}
 

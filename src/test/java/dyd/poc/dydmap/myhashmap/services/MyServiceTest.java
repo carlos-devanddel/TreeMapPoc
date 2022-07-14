@@ -42,4 +42,24 @@ class MyServiceTest {
 		assertEquals(1, result.get(inputList.get(2).getTheKey()).size());
 
 	}
+
+	@Test
+	void convertListToMap_should_add2ElementsAndOneWith2Elements_when2EqualKeysThatHasTheThirdFieldDifferentAnd3Values() {
+		TheKey key = testObjectGenerator.createRandomTestObject(TheKey.class);
+		TheKey key2 = testObjectGenerator.createRandomTestObject(TheKey.class);
+		key2.setFirstField(key.getFirstField());
+		key2.setSecondField(key.getSecondField());
+		key2.setThirdField("AAAAA");
+		key.setThirdField("BBBBBB");
+		List<TheValue> inputList = testObjectGenerator.createRandomListOfTestObjects(TheValue.class, 3);
+		inputList.get(0).setTheKey(key);
+		inputList.get(1).setTheKey(key2);
+
+		Map<TheKey, List<TheValue>> result = sut.convertListToMap(inputList);
+
+		assertEquals(2, result.size());
+		assertEquals(2, result.get(inputList.get(0).getTheKey()).size());
+		assertEquals(1, result.get(inputList.get(2).getTheKey()).size());
+
+	}
 }
